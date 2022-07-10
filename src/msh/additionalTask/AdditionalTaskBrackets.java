@@ -2,36 +2,25 @@ package msh.additionalTask;
 
 public class AdditionalTaskBrackets {
 	public static boolean hasValidBrackets(String text) {
-	     char str[] = text.toCharArray();
-	     boolean res = true;
-	     char closeSymb = 0;
-	     for(int i = 0; i < str.length; i++) {
-	    	 if(str[i] == '(' || str[i] == '[' || str[i] == '{') {
-	    		 res = hasCloseBracket(str, str[i], i, closeSymb);
-	    		 if(!res) {
-	    			 return res;
-	    		 }
-	    	 }
-	     }
-		return res;
-	}
-
-	private static boolean hasCloseBracket(char[] str, char symb, int index, char prevCloseSymb) {
-		char closeSymb;
-		boolean res = false;
-		closeSymb = symb == '(' ? ')' : symb == '[' ? ']' : '}';
-		for(int i = index + 1; i < str.length; i++) {
-			if(str[i] == closeSymb) {
-				return true;
-			} else if(str[i] == '(' || str[i] == '[' || str[i] == '{') {
-				res = hasCloseBracket(str, str[i], i, closeSymb);
-	    		 if(!res) {
-	    			 return res;
-	    		 }
-			} else if (str[i] == prevCloseSymb) {
-				return res;
-			}
+		char[] bracketsArray = new char [text.length()];
+		int i = 0;
+		for (char c : text.toCharArray()) {
+			if (c == '(' || c == '[' || c == '{') {
+				bracketsArray[++i] = c;
+			} else if (c == ')') {
+				if (bracketsArray[i] == '(') {
+					i--;
+				} else {
+					return false;
+				}
+			} else if (c == ']' || c == '}') {
+				if (bracketsArray[i] == c - 2) {
+					i--;
+				} else {
+					return false;
+				}
+			}	
 		}
-		return res;
+		return i == 0 ? true : false;
 	}
 }
