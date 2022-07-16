@@ -21,6 +21,27 @@ public class AdditionalTaskBrackets {
 				}
 			}	
 		}
-		return i == 0 ? true : false;
+		return i == 0;
 	}
+	
+/*******************hasValidBrackets with indexOf**********************************/
+//	public static boolean hasValidBrackets(String text) {
+//		char[] bracketsArray = new char [text.length()];
+//		int i = 0;
+//		String openBrackets = "([{";
+//		String closeBrackets = ")]}";
+//		for (char c : text.toCharArray()) {
+//			if (openBrackets.indexOf(c) >= 0) {
+//				bracketsArray[++i] = c;
+//			} else if (closeBrackets.indexOf(c) >= 0) {
+//				if (openBrackets.indexOf(bracketsArray[i]) == closeBrackets.indexOf(c)) {
+//					i--;
+//				} else {
+//					return false;
+//				}
+//			}	
+//		}
+//		return i == 0;
+//	}
 }
+                                                            
