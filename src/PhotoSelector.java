@@ -74,15 +74,15 @@ public class PhotoSelector {
 
 		// ====> TODO: Write the following tests ==========
 		// Test 2. All Europe pictures
-		selectPictures("All Europe pictures", "Paris|London");
+		selectPictures("All Europe pictures", "^(?!Chicago)");
 		// Test 3. All autumn pictures
-		selectPictures("All autumn pictures", "[a-zA-Z]+\\\\[\\d]{4}(09|1[0-2])");
+		selectPictures("All autumn pictures", "[a-zA-Z]+\\\\[\\d]{4}(09|1[01])");
 		// Test 4  All 2015 spring pictures
-		selectPictures("All 2015 spring pictures", "[a-zA-Z]+\\\\2015(03|0[45])");
+		selectPictures("All 2015 spring pictures", "[a-zA-Z]+\\\\20150[3-5]");
 		// Test 5. All night pictures (from 18:00 till 24:00)
-		selectPictures("All night pictures (from 18:00 till 24:00)", "[a-zA-Z]+\\\\[\\d]{8}_(1[89]|2[0-4])[0-5]\\d");
+		selectPictures("All night pictures (from 18:00 till 24:00)", "[a-zA-Z]+\\\\[\\d]{8}_(1[89]|2[0-3])[0-5]\\d");
 		// Test 6. All night pictures from Chicago
-		selectPictures("All night pictures from Chicago", "Chicago\\\\[\\d]{8}_(1[89]|2[0-4])[0-5]\\d");
+		selectPictures("All night pictures from Chicago", "Chicago\\\\[\\d]{8}_(1[89]|2[0-3])[0-5]\\d");
 		// Test 7. All jpg and png pictures
 		selectPictures("All jpg and png pictures", "[a-zA-Z]+\\\\[\\d]{8}_\\d{6}.(jpg|png)"); //".(jpg|png)"
 		// Test 8* All pictures taken in dates with equal number of month and day
