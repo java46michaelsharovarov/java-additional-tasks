@@ -12,7 +12,11 @@ public class FilteredIterator<T> implements Iterator<T> {
 	public FilteredIterator(Iterator<T> srcIterator, Predicate<T> filter) {	
 		this.it = srcIterator;   
 		this.predicate = filter;
-		this.current = it.next();
+		try {
+			this.current = getNext(it.next());
+		} catch (NoSuchElementException e) {
+			this.current = null;
+		}		
 	}
 
 	@Override
@@ -26,7 +30,11 @@ public class FilteredIterator<T> implements Iterator<T> {
 			throw new NoSuchElementException();
 		}
 		T next = this.current;
-		this.current = getNext(it.next());
+		try {
+			this.current = getNext(it.next());
+		} catch (NoSuchElementException e) {
+			this.current = null;
+		}
 		return next;
 	}
 
@@ -38,6 +46,6 @@ public class FilteredIterator<T> implements Iterator<T> {
 				current = it.next();
 			}			
 		}
-		return null;
+		return predicate.test(current) ? current : null;
 	}
 }
