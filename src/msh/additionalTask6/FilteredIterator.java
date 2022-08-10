@@ -13,15 +13,15 @@ public class FilteredIterator<T> implements Iterator<T> {
 		this.it = srcIterator;   
 		this.predicate = filter;
 		try {
-			this.current = getNext(it.next());
+			current = getNext();
 		} catch (NoSuchElementException e) {
-			this.current = null;
+			current = null;
 		}		
 	}
 
 	@Override
 	public boolean hasNext() {
-		return this.current != null;
+		return current != null;
 	}
 
 	@Override
@@ -29,16 +29,17 @@ public class FilteredIterator<T> implements Iterator<T> {
 		if(!hasNext()) {
 			throw new NoSuchElementException();
 		}
-		T next = this.current;
+		T next = current;
 		try {
-			this.current = getNext(it.next());
+			current = getNext();
 		} catch (NoSuchElementException e) {
-			this.current = null;
+			current = null;
 		}
 		return next;
 	}
 
-	private T getNext(T current) {
+	private T getNext() {
+		T current = it.next();
 		while(it.hasNext()) {
 			if(predicate.test(current)) {
 				return current;
