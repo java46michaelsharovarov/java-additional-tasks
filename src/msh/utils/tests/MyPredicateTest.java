@@ -44,10 +44,11 @@ class MyPredicateTest {
 	
 	@Test
 	void isEqualTest() {
-		Integer obj = 5;
-		Integer obj1 = 5;
-		Integer obj2 = 3;
+		Integer obj = 555;
+		Integer obj1 = 555;
+		Integer obj2 = 333;
 		MyPredicate<Integer> p4 = MyPredicate.isEqual(obj);
+		assertTrue(obj == obj1);
 		assertTrue(p4.test(obj1));
 		assertFalse(p4.test(obj2));
 	}
