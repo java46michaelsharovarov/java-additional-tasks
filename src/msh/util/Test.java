@@ -1,7 +1,9 @@
 package msh.util;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.HashMap;
+import java.util.List;
 
 public class Test {
 
@@ -18,10 +20,11 @@ public class Test {
 		// Expected result is:
 		//     Kukushkin=7
 		//     Golubev=7
-		map.entrySet()
+		List<Entry<String, Integer>> v = map.entrySet()
 		.parallelStream()
 		.collect(MaxRatedWinnersCollector.of(e -> e.getValue()))
-		.forEach(System.out::println);				
+		.res();	
+		System.out.println(v);
 	}
 
 }
