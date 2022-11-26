@@ -1,4 +1,4 @@
-package src.msh.task;
+package msh.task;
 
 /*
 "The Dining Philosophers" Task – Resolve the Deadlock in class Philosophers
