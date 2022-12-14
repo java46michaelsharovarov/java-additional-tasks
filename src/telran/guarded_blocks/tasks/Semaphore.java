@@ -28,9 +28,10 @@ public class Semaphore {
 	 * @throws InterruptedException
 	 */
 	public synchronized void acquire() throws InterruptedException {
-		if (--resourceCount < 0) {
+		while (resourceCount == 0) {			
 			wait();
 		}
+		resourceCount--;
 	}
 
 	/**

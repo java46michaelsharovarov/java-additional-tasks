@@ -27,16 +27,15 @@ public class Barrier {
 		if(threadsCount == 1) {
 			return;
 		}
-		if (++waitingThreadCount == threadsCount) {
-			waitingThreadCount = 0;
-			notifyAll();
-		} else {
+		waitingThreadCount++;
+		while (waitingThreadCount < threadsCount) {
 			try {
-				wait(10000);
+				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		notifyAll();
 	}
 
 	/**
@@ -54,9 +53,9 @@ public class Barrier {
 	 *  9599 Thread Thread-2 passed the barrrier
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		final int THREADS_COUNT = 9;
+		final int THREADS_COUNT = 5;
 		long startTime = System.currentTimeMillis();
-		Barrier barrier = new Barrier(2);
+		Barrier barrier = new Barrier(THREADS_COUNT);
 
 		Runnable r = () -> {
 			try {
